@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="com.quiz.lesson03.dao.Real_estateDAO">
-	<select id="selectReal_estateById" parameterType="int" resultType="com.quiz.lesson03.model.Real_estate">
+<mapper namespace="com.quiz.lesson03.dao.RealestateDAO">
+	<select id="selectRealEstateById" parameterType="int" resultType="com.quiz.lesson03.model.Realestate">
 		SELECT
 			`id`
 			,`realtorId`
@@ -20,7 +20,7 @@
 			`id` = #{id}
 	</select>
 	
-	<select id="selectReal_estateListByRentPrice" parameterType="Integer" resultType="com.quiz.lesson03.model.Real_estate">
+	<select id="selectRealEstateListByRentPrice" parameterType="Integer" resultType="com.quiz.lesson03.model.Realestate">
 		SELECT
 			`id`
 			,`realtorId`
@@ -37,11 +37,11 @@
 			`type` = '월세'
 		AND
 			<![CDATA[
-			rentPrice < #{Integer}
+			rentPrice < #{rentPrice}
 			]]>
 	</select>
 	
-	<select id="selectReal_estateListByAreaPrice" parameterType="map" resultType="com.quiz.lesson03.model.Real_estate">
+	<select id="selectRealEstateListByAreaPrice" parameterType="map" resultType="com.quiz.lesson03.model.Realestate">
 		SELECT
 			`id`
 			,`realtorId`
