@@ -31,4 +31,12 @@ public class RealestateBO {
 				
 		return realEstateList;
 	}
+	
+	public int addRealEstate(Realestate realestate) {
+		return realEstateDao.insertRealEstate(realestate);
+	}
+	
+	public int addRealEstateAsField(int realtorId, String address, int area, String type, int price, int rentPrice) {
+		return realEstateDao.insertRealEstateAsField(realtorId, address, area, type, price, rentPrice);
+	}
 }
