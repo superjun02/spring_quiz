@@ -61,4 +61,15 @@ public class RealestateRestController {
 		
 		return "입력 성공 : " + rowCount;
 	}
+	
+	//http://localhost:8080/lesson03/quiz03?id=8&type=전세&price=70000
+	@RequestMapping("quiz03")
+	public String quiz03(
+			@RequestParam(value="id") int id,
+			@RequestParam(value="type") String type,
+			@RequestParam(value="price") int price) {
+		
+		int rowCount = realEstateBO.updateRealEstate(id, type, price);
+		return "변경 완료:" + rowCount;
+	}
 }
