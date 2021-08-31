@@ -43,4 +43,8 @@ public class RealestateBO {
 	public int updateRealEstate(int id, String type, int price) {
 		return realEstateDao.updateRealEstate(id, type, price);
 	}
+	
+	public int deleteRealEstateById(int id) {
+		return realEstateDao.deleteRealEstateById(id);
+	}
 }
