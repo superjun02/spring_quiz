@@ -7,4 +7,8 @@ import com.quiz.lesson04.model.Seller;
 @Repository
 public interface SellerDAO {
 	public void insertSeller(Seller seller);
+	
+	public Seller selectLastSeller();
+	
+	public Seller selectSellerById(int id);
 }

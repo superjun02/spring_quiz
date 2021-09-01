@@ -9,9 +9,17 @@ import com.quiz.lesson04.model.Seller;
 @Service
 public class SellerBO {
 	@Autowired
-	SellerDAO sellerDao;
+	SellerDAO sellerDAO;
 	
 	public void addSeller(Seller seller) {
-		sellerDao.insertSeller(seller);
+		sellerDAO.insertSeller(seller);
+	}
+	
+	public Seller getLastSeller() {
+		return sellerDAO.selectLastSeller();
+	}
+	
+	public Seller getSellerById(int id) {
+		return sellerDAO.selectSellerById(id);
 	}
 }
