@@ -42,7 +42,7 @@ public class SellerController {
 	// http://localhost:8080/lesson04/quiz01/seller_info?id=1
 	// http://localhost:8080/lesson04/quiz01/seller_info
 	@GetMapping("/quiz01/seller_info")
-	public String getLastUser(Model model,
+	public String getSellerById(Model model,
 			@RequestParam(value = "id", required = false) Integer id) {
 		Seller seller = new Seller();
 		if (id == null) {
