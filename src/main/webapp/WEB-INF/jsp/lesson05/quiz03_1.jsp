@@ -40,7 +40,7 @@
 				<tr>
 					<td>${status.count}</td>
 					<td><fmt:formatNumber value="${candidates}" type="number" /></td>
-					<td><fmt:formatNumber value="${candidates / 1000000} " type="percent" /></td>
+					<td><fmt:formatNumber value="${candidates / vote} " type="percent" /></td>
 				</tr>
 			</c:forEach>
 			</tbody>
