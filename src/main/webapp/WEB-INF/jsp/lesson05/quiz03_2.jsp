@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멤버쉽</title>
+<title>카드 명세서</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
@@ -25,42 +26,26 @@
 </head>
 <body>
 	<div class="container">
-		<h1>멤버쉽</h1>
+		<h1>2. 카드 명세서</h1>
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th class="col-2">이름</th>
-					<th class="col-4">전화 번호</th>
-					<th class="col-3">등급</th>
-					<th class="col-3">포인트</th>
+					<th>사용처</th>
+					<th>가격</th>
+					<th>사용 날짜</th>
+					<th>할부</th>
 				</tr>
 			</thead>
-			<tbody">
-				<c:forEach var="member" items="${membership}">
-					<tr>
-						<td>${member.name}</td>
-						<td>${member.phoneNumber}</td>
-						<c:choose>
-							<c:when test="${member.grade eq 'VIP'}">
-								<td class="text-danger">${member.grade}</td>
-							</c:when>
-							<c:when test="${member.grade eq 'GOLD'}">
-								<td class="text-warning">${member.grade}</td>
-							</c:when>
-							<c:otherwise>
-								<td>${member.grade}</td>
-							</c:otherwise>
-						</c:choose>
-						<c:choose>
-							<c:when test="${member.point >= 5000}">
-								<td class="text-primary">${member.point}P</td>
-							</c:when>
-							<c:otherwise>
-								<td>${member.point}P</td>
-							</c:otherwise>
-						</c:choose>
-					</tr>
-				</c:forEach>
+			<tbody>
+			<c:forEach var="cardBill" items="${cardBills}">
+			<fmt:parseDate value="${cardBill.date}" pattern="yyyy-MM-dd" var="date"/>
+				<tr>
+					<td>${cardBill.store}</td>
+					<td><fmt:formatNumber value="${cardBill.pay}" type="currency" /></td>
+					<td><fmt:formatDate value="${date}" pattern="yyyy년 MM월 dd일" /></td>
+					<td>${cardBill.installment}</td>
+				</tr>
+			</c:forEach>
 			</tbody>
 		</table>
 	</div>
