@@ -53,7 +53,7 @@ header {
 			</div>
 			<c:forEach var="store" items="${stores}">
 				<div class="pt-3">
-					<div class="side" onclick="location.href='/lesson05/quiz06_1?storeId=${store.id}&storeName=${store.name}'">
+					<div class="side" onclick="location.href='/lesson05/quiz06_1?storeId=${store.id}'">
 						<div class="d-flex align-items-center pl-3 h-100">
 							<div class="mb-1">
 								<h3>${store.name}</h3>
