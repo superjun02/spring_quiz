@@ -9,4 +9,6 @@ import com.quiz.lesson05.model.Weatherhistory;
 @Repository
 public interface WeatherhistoryDAO {
 	public List<Weatherhistory> selectWeatherhistory();
+	
+	public void insertWeatherhistory(Weatherhistory weatherhistory);
 }

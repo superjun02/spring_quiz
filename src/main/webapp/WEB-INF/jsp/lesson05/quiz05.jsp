@@ -29,75 +29,91 @@
 aside {
 	background-color: #0098e0;
 }
+footer {
+	height: 70px;
+}
 </style>
 <body>
-	<div class="container d-flex">
-		<aside class="col-2">
-			<div>
-				<img alt="로고" src="/images/logo.png">
-			</div>
-			<div class="mt-3">
-				<ul class="nav flex-column">
-					<li>
-						<a href="/lesson05/quiz05" class="nav-link text-white pl-2">날씨</a>
-					</li>
-					<li>
-						<a href="/lesson05/quiz05_1" class="nav-link text-white  pl-2">날씨입력</a>
-					</li>
-					<li>
-						<a href="#" class="nav-link text-white pl-2">테마날씨</a>
-					</li>
-					<li>
-						<a href="#" class="nav-link text-white  pl-2">관측 기후</a>
-					</li>
-				</ul>
-			</div>
-		</aside>
-		<div class="col-10">
-			<div class="mt-2 ml-4">
-				<h3>과거 날씨</h3>
-				<table class="table text-center">
-					<thead>
-						<tr>
-							<th class="col-3">날짜</th>
-							<th class="col-1">날씨</th>
-							<th class="col-2">기온</th>
-							<th class="col-2">강수량</th>
-							<th class="col-2">미세먼지</th>
-							<th class="col-2">풍속</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="weatherhistory" items="${weatherhistorys}">
+	<div class="container">
+		<div class="d-flex w-100">
+			<aside class="col-2">
+				<div>
+					<img alt="로고" src="/images/logo.png">
+				</div>
+				<div class="mt-3">
+					<ul class="nav flex-column">
+						<li>
+							<a href="/lesson05/quiz05" class="nav-link text-white pl-2">날씨</a>
+						</li>
+						<li>
+							<a href="/lesson05/quiz05_1" class="nav-link text-white  pl-2">날씨입력</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link text-white pl-2">테마날씨</a>
+						</li>
+						<li>
+							<a href="#" class="nav-link text-white  pl-2">관측 기후</a>
+						</li>
+					</ul>
+				</div>
+			</aside>
+			<div class="col-10">
+				<div class="mt-2 ml-4">
+					<h3>과거 날씨</h3>
+					<table class="table text-center">
+						<thead>
 							<tr>
-								<td>
-								<fmt:formatDate value="${weatherhistory.date}"
-										pattern="yyyy년 MM월 dd일" />
-								</td>
-								<td>
-								<c:if test="${weatherhistory.weather eq '맑음'}">
-									<img alt="맑음" src="/images/sunny.jpg">
-								</c:if> 
-								<c:if test="${weatherhistory.weather eq '구름조금'}">
-									<img alt="구름조금" src="/images/partlyCloudy.jpg">
-								</c:if>
-								<c:if test="${weatherhistory.weather eq '흐림'}">
-									<img alt="흐림" src="/images/cloudy.jpg">
-								</c:if> 
-								<c:if test="${weatherhistory.weather eq '비'}">
-									<img alt="비" src="/images/rainy.jpg">
-								</c:if>
-								</td>
-								<td>${weatherhistory.temperatures}°C</td>
-								<td>${weatherhistory.precipitation}mm</td>
-								<td>${weatherhistory.microDust}</td>
-								<td>${weatherhistory.windSpeed}km/h</td>
+								<th class="col-3">날짜</th>
+								<th class="col-1">날씨</th>
+								<th class="col-2">기온</th>
+								<th class="col-2">강수량</th>
+								<th class="col-2">미세먼지</th>
+								<th class="col-2">풍속</th>
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							<c:forEach var="weatherhistory" items="${weatherhistorys}">
+								<tr>
+									<td>
+									<fmt:formatDate value="${weatherhistory.date}"
+											pattern="yyyy년 MM월 dd일" />
+									</td>
+									<td>
+									<c:if test="${weatherhistory.weather eq '맑음'}">
+										<img alt="맑음" src="/images/sunny.jpg">
+									</c:if> 
+									<c:if test="${weatherhistory.weather eq '구름조금'}">
+										<img alt="구름조금" src="/images/partlyCloudy.jpg">
+									</c:if>
+									<c:if test="${weatherhistory.weather eq '흐림'}">
+										<img alt="흐림" src="/images/cloudy.jpg">
+									</c:if> 
+									<c:if test="${weatherhistory.weather eq '비'}">
+										<img alt="비" src="/images/rainy.jpg">
+									</c:if>
+									</td>
+									<td>${weatherhistory.temperatures}°C</td>
+									<td>${weatherhistory.precipitation}mm</td>
+									<td>${weatherhistory.microDust}</td>
+									<td>${weatherhistory.windSpeed}km/h</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
+		<footer class="d-flex">
+			<div class="col-2">
+				<img alt="footer" src="/images/footer.png">
+			</div>
+			<div class="col-10 pt-2">
+				<small class="text-secondary">
+				(07062) 서울시 동작구 여의대방로16길 61<br>
+				Copyright@2020 KMA. All Rights RESERVED.
+				</small>
+			</div>
+		</footer>
 	</div>
 </body>
 </html>
