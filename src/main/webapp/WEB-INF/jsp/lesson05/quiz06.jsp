@@ -29,14 +29,12 @@
 .main {
 	margin: auto;
 	width: 600px;
-	height: 1000px;
 }
 header {
 	background-color: #12a3b8;
 	height: 80px;
 }
 .side {
-	height: 140px;
 	border-style: solid;
 	border-radius: 5px;
 	border-color: #12a3b8;
@@ -55,7 +53,7 @@ header {
 				<div class="pt-3">
 					<div class="side" onclick="location.href='/lesson05/quiz06_1?storeId=${store.id}'">
 						<div class="d-flex align-items-center pl-3 h-100">
-							<div class="mb-1">
+							<div class="mb-1 pt-3 pb-3">
 								<h3>${store.name}</h3>
 								<b>전화 번호: ${store.phoneNumber}</b><br>
 								<b>주소: ${store.address}</b>
