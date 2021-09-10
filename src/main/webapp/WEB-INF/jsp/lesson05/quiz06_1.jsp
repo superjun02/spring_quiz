@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -30,14 +30,27 @@
 	margin: auto;
 	width: 600px;
 }
+
 header {
 	background-color: #12a3b8;
 	height: 80px;
 }
+
 .side {
 	border-style: solid;
 	border-radius: 5px;
 	border-color: #12a3b8;
+}
+
+.menuBox {
+	border-style: solid;
+	border-radius: 5px;
+	background-color: #e1e1e1;
+	border-color: #e1e1e1;
+	display: inline-block;
+}
+.noReview {
+	height: 120px;
 }
 </style>
 <body>
@@ -47,17 +60,48 @@ header {
 		</header>
 		<div class="menu">
 			<div class="display-4 d-flex align-items-center mt-2 mb-2">
-				우리동네 가게
+				${storeName}-리뷰
 			</div>
-			<c:forEach var="store" items="${stores}">
+			<c:if test="${reviews eq '[]'}">
+				<div class="noReview d-flex ml-5 align-items-center">
+					<h1><b>작성된 리뷰가 없습니다.</b></h1>
+				</div>
+			</c:if>
+			<c:forEach var="review" items="${reviews}">	
 				<div class="pt-3">
-					<div class="side" onclick="location.href='/lesson05/quiz06_1?storeId=${store.id}&storeName=${store.name}'">
+					<div class="side">
 						<div class="d-flex align-items-center pl-3 h-100">
 							<div class="mb-1 pt-3 pb-3">
-								<h3>${store.name}</h3>
-								<b>전화 번호: ${store.phoneNumber}</b><br>
-								<b>주소: ${store.address}</b>
-							</div>	
+								<div class="d-flex">
+									<b>${review.userName}</b>
+									<div class="pl-2">
+										<c:forEach begin="1" end="${review.point}" step="1"
+											varStatus="status">
+											<img alt="star_fill" src="/images/star_fill.png" width="15"
+												height="17" class="pb-1">
+										</c:forEach>
+										<c:if test="${review.point % 1 eq 0.5}">
+											<img alt="star_half" src="/images/star_half.png" width="15"
+												height="17" class="pb-1">
+										</c:if>
+										<c:forEach begin="1" end="${5.0 - review.point}" step="1"
+											varStatus="status">
+											<img alt="star_empty" src="/images/star_empty.png" width="15"
+												height="17" class="pb-1">
+										</c:forEach>
+									</div>
+								</div>
+								<small class="text-secondary"><fmt:formatDate
+										value="${review.updatedAt}" pattern="yyyy년 MM월 dd일" /></small><br>
+								<div class="pt-2 pb-1">${review.review}</div>
+								<div class="pt-1">
+									<div class="menuBox">
+										<div class="pb-1">
+											<small><b>${review.menu}</b></small>
+										</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
