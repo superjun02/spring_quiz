@@ -15,13 +15,17 @@
 	<div class="container">
 		<h2>즐겨 찾기 추가하기</h2>
 		<div class="w-100">
-			<b>제목:</b>
-			<input type="text" class="form-control" name="name"><br>
-				
-			<b>주소:</b>
-			<input type="text" class="form-control" name="url"><br>
+			<div class="form-group">
+				<b>제목:</b>
+				<input type="text" class="form-control" name="name"><br>
+			</div>
 			
-			<input type="submit" id="addBtn" class="btn btn-success w-100" value="추가">
+			<div class="form-group">
+				<b>주소:</b>
+				<input type="text" class="form-control" name="url"><br>
+			</div>
+			
+			<input type="button" id="addBtn" class="btn btn-success w-100" value="추가">
 		</div>
 	</div>
 </body>
@@ -39,6 +43,12 @@
 			let url = $('input[name=url]').val().trim();
 			if (url == '') {
 				alert("주소를 입력하세요");
+				return false;
+			}
+			
+			
+			if (!(url.startsWith("http")) && !(url.startsWith("https"))) {
+				alert("http또는 https로 시작하는 주소를 입력하시오")
 				return false;
 			}
 			
