@@ -63,4 +63,13 @@ public class Lesson06Quiz01Controller {
 		
 		return result;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteBookmark")
+	public String deleteBookmark(
+			@RequestParam("id") int id) {
+		bookmarkBO.deleteBookmarkById(id);
+		
+		return "success";
+	}
 }

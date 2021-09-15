@@ -42,11 +42,19 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('.delete').on('click', function() {
-				let id = $('.delete').val();
+				let id = $(this).val();
 				
-				alert(id);
-				
-				
+				$.ajax({
+					type: 'get'
+					, url: '/lesson06/quiz01/deleteBookmark'
+					, data: {'id':id}
+					, success: function(data) {
+						location.reload();
+					}
+					, error: function(e) {
+						alert("실패:" + e);
+					}
+				});
 			});
 		});
 	</script>
