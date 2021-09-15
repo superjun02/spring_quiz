@@ -41,15 +41,20 @@
 			
 			$('#urlStatusArea').empty();
 			
+			if (url == '') {
+				$('#urlStatusArea').append('<small id="small" class="text-danger">url이 비어있습니다.</small>');
+				return;
+			}
+			
 			$.ajax({
 				type: 'get'
 				, url: '/lesson06/quiz01/is_duplication'
 				, data: {'url': url}
 				, success: function(data) {
 					if (data.is_duplication == true) {
-						$('#urlStatusArea').append('<small class="text-danger">중복된 url 입니다.</small>')
+						$('#urlStatusArea').append('<small id="small" class="text-danger">중복된 url 입니다.</small>')
 					} else {
-						$('#urlStatusArea').append('<small class="text-success">저장 가능한 url 입니다.</small>')
+						$('#urlStatusArea').append('<small id="small" class="text-success">저장 가능한 url 입니다.</small>')
 					}
 				}
 				, error: function(e) {
@@ -60,6 +65,10 @@
 		
 		$('#addBtn').on('click', function(e) {
 			e.preventDefault();
+			
+			if ($('#small').hasClass("text-danger")) {
+				return false
+			}
 			
 			let name = $('input[name=name]').val().trim();
 			if (name == '') {
