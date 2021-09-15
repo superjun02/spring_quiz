@@ -11,4 +11,6 @@ public interface BookmarkDAO {
 	public void insertBookmark(Bookmark bookmark);
 	
 	public List<Bookmark> selectBookmarkList();
+	
+	public boolean existBookmarkByUrl(String name);
 }

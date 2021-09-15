@@ -20,10 +20,15 @@
 				<input type="text" class="form-control" name="name"><br>
 			</div>
 			
-			<div class="form-group">
+			<div class="form-group w-100">
 				<b>주소:</b>
-				<input type="text" class="form-control" name="url"><br>
+				<div class="d-flex">
+					<input type="text" class="form-control" id="url" name="url"><br>
+					<button type="button" id="urlCheckBtn" class="btn btn-info">중복확인</button>
+				</div>
 			</div>
+			
+			<div id="urlStatusArea"></div><br>
 			
 			<input type="button" id="addBtn" class="btn btn-success w-100" value="추가">
 		</div>
@@ -31,6 +36,28 @@
 </body>
 <script type="text/javascript">
 	$(document).ready(function() { 
+		$('#urlCheckBtn').on('click', function() {
+			let url = $('#url').val().trim();
+			
+			$('#urlStatusArea').empty();
+			
+			$.ajax({
+				type: 'get'
+				, url: '/lesson06/quiz01/is_duplication'
+				, data: {'url': url}
+				, success: function(data) {
+					if (data.is_duplication == true) {
+						$('#urlStatusArea').append('<small class="text-danger">중복된 url 입니다.</small>')
+					} else {
+						$('#urlStatusArea').append('<small class="text-success">저장 가능한 url 입니다.</small>')
+					}
+				}
+				, error: function(e) {
+					alert("실패:" + e);
+				}
+			});
+		});
+		
 		$('#addBtn').on('click', function(e) {
 			e.preventDefault();
 			
