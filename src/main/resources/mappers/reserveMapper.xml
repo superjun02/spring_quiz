@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.quiz.lesson06.dao.ReserveDAO">	
+ 	<select id="selectReserveList" resultType="com.quiz.lesson06.model.Reserve">
+ 		SELECT
+ 			`id`
+			,`name`
+			,`date`
+			,`day`
+			,`person`
+			,`phoneNumber`
+			,`status`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`reserve`
+ 	</select>
+ 	
+ 	<delete id="deleteBookmarkById" parameterType="int">
+ 		DELETE 
+ 		FROM
+ 			`reserve`
+ 		WHERE
+ 			`id` = #{id}
+ 	</delete>
+ 	
+ 	<insert id="insertReserve" parameterType="com.quiz.lesson06.model.Reserve">
+ 		INSERT INTO `reserve`
+ 		(
+			`name`
+			,`date`
+			,`day`
+			,`person`
+			,`phoneNumber`
+			,`status`
+			,`createdAt`
+			,`updatedAt`
+ 		)
+ 		VALUES
+ 		(
+			#{name}
+			, #{date}
+			, #{day}
+			, #{person}
+			, #{phoneNumber}
+			, #{status}
+			, NOW()
+			, NOW()
+ 		)
+ 	</insert>
+ 	
+ 	<select id="checkReserveByName" parameterType="map" resultType="boolean">
+		SELECT
+			count(*)
+		FROM
+			`reserve`
+		WHERE
+			`name` = #{name}
+		AND
+			`phoneNumber` = #{phoneNumber}
+	</select>
+	
+	<select id="selectReserveByName" parameterType="map" resultType="com.quiz.lesson06.model.Reserve">
+		SELECT
+ 			`id`
+			,`name`
+			,`date`
+			,`day`
+			,`person`
+			,`phoneNumber`
+			,`status`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`reserve`
+		WHERE
+			`name` = #{name}
+		AND
+			`phoneNumber` = #{phoneNumber}
+	</select>
+</mapper>
