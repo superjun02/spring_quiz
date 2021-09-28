@@ -221,7 +221,12 @@ footer {
 				, url: '/lesson06/quiz03/checkReserve'
 				, data: {'name':name, 'phoneNumber':phoneNumber}
 				, success: function(data) {
-					alert(data);
+					if (data.result == '성공') {
+						alert("이름: " + data.name  + "\n날짜: " + data.date + "\n일수: " + data.day + "\n인원: " + data.person
+								+ "\n상태: " + data.status);
+					} else {
+						alert("예약 내역 없음");
+					}
 				}
 				, error: function(e) {
 					alert("실패:" + e);

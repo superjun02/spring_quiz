@@ -3,7 +3,9 @@ package com.quiz.lesson06;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -78,10 +80,12 @@ public class Lesson06Quiz03Controller {
 	
 	@ResponseBody
 	@RequestMapping("/lesson06/quiz03/checkReserve")
-	public String checkReserve(
+	public Map<String, Object> checkReserve(
 			@RequestParam("name") String name,
 			@RequestParam("phoneNumber") String phoneNumber) {
-	
+		Map<String, Object> result = new HashMap<String, Object>();
+		
+		
 		if (reserveBO.checkReserveByName(name, phoneNumber)) {
 			Reserve reserve = new Reserve();
 			
@@ -90,15 +94,17 @@ public class Lesson06Quiz03Controller {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
 			String date = simpleDateFormat.format(reserve.getDate());
 			
-			String result = "이름: " + reserve.getName()
-			+ "\n날짜: " + date
-			+ "\n일수: " + reserve.getDay()
-			+ "\n인원: " + reserve.getPerson()
-			+ "\n상태: " + reserve.getStatus();
+			result.put("result", "성공");
+			result.put("name", reserve.getName());
+			result.put("date", date);
+			result.put("day", reserve.getDay());
+			result.put("person", reserve.getPerson());
+			result.put("status", reserve.getStatus());
 							
 			return result;
 		} else {
-			String result = "예약 내역 없음";
+			result.put("result", "실패");
+					
 			return result;
 		}
 	}
